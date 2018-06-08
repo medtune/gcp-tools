@@ -1,11 +1,22 @@
 #!/bin/bash
 
-if [ -f "$HOME/.assb.lock" ]; then
+if [ -f "$HOME/.ulock" ]; then
     exit 0
 fi
 
 apt upgrade -y
 apt-get upgrade -y
+
+apt-get install -y \
+    autoconf \
+    automake \
+    libtool \
+    make \
+    g++ \
+    golang-1.10-go \
+    htop \
+    python3-pip \
+    curl 
 
 if [ "$ubuntu_version" = "17.04" ]; then 
     if ! dpkg-query -W cuda-9-0; then
@@ -30,17 +41,9 @@ nvidia-smi -pm 1
 
 add-apt-repository ppa:gophers/archive -y
 apt-get update -y
-apt-get install -y \
-    autoconf \
-    automake \
-    libtool \
-    make \
-    g++ \
-    golang-1.10-go \
-    htop \
-    python3-pip \
-    curl 
 
 # Path
 PATH="$PATH:/usr/lib/go-1.10/bin"
 PATH="$PATH:$HOME/bin:$HOME/go/bin"
+
+echo "$?" >> "$HOME/.ulock"

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ -f "$HOME/.assb.lock" ]; then
+if [ -f "$HOME/.ulock" ]; then
     exit 0
 fi
 
@@ -19,7 +19,8 @@ apt-get install -y \
     golang-1.10-go \
     htop \
     python3-pip \
-    curl
+    curl \
+    
 
 # Set bash profile
 echo "PATH=$PATH:$HOME/bin:$HOME/go/bin:/usr/lib/go-1.10/bin" >> $HOME/.profile
@@ -34,4 +35,4 @@ apt install protobuf-compiler -y
 go get -u github.com/golang/protobuf/{proto,protoc-gen-go}
 go get -u google.golang.org/grpc
 
-echo "$?" >> "$HOME/.assb.lock"
+echo "$?" >> "$HOME/.ulock"
